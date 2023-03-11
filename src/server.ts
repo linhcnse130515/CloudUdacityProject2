@@ -49,14 +49,14 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   app.get("/filteredimage", async (req: Request,res: Response)=>{
     let {image_url}: any = req.query;
     if( !image_url ) {
-      return res.status(500)
+      return res.status(422)
                 .send(`Unprocessable entity`);
     }
       else{
         filterImageFromURL(image_url).then((result)=>{
         res.sendFile(result);
         res.on(`finish`,()=>deleteLocalFiles([result]));
-        }).catch((err)=>res.status(500).send(err))
+        }).catch((err)=>res.status(422).send(err))
       }
   } );
 
