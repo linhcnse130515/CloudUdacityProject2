@@ -56,7 +56,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
         filterImageFromURL(image_url).then((result)=>{
         res.sendFile(result);
         res.on(`finish`,()=>deleteLocalFiles([result]));
-        }).catch((err)=>res.status(422).send(err))
+        }).catch((err)=>res.status(500).send(err))
       }
   } );
 
